@@ -36,9 +36,11 @@ sequenceDiagram
     participant System as 系統
     participant Shareposting as 共享張貼處
 
+    User->>System: 輸入帳號和密碼
+    System-->>User: 登入成功，顯示輸入頁面
     User->>System: 輸入文字
     System-->>User: 生成並顯示圖片
-    System->>Shareposting: 張貼圖片
+    User->>Shareposting: 張貼圖片
    
     alt 選定圖片
         System-->>User: 顯示張貼或下載
@@ -49,12 +51,12 @@ sequenceDiagram
 ### 活動圖
 ```mermaid
 flowchart TD
-    A[開始] --> B[顯示輸入介面]
-    B --> C[輸入文字]  
-    C --> D{是否選定圖片？}
-    D -- 是 --> E[顯示張貼/下載選項]
-    D -- 否 --> B
-    E -- 張貼 --> F[雲端共享張貼處]
+    A[開始] --> B[輸入帳號和密碼]
+    B --> C[顯示輸入頁面] 
+    C --> D[輸入文字] 
+    D --> E{是否選定圖片？}
+    E -- 是 --> F[張貼至雲端共享張貼處]
+    E -- 否 --> C
     F --> G[結束]
 ```
 
